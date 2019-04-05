@@ -45,6 +45,9 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/UIViewController.html">UIViewController</a>
               </li>
             </ul>
@@ -73,6 +76,13 @@ to your front and side controllers for easier setup. Have a look at <code><a hre
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Public%20Settings"></a>
+                <a name="//apple_ref/swift/Section/Public Settings" class="dashAnchor"></a>
+                <a href="#/Public%20Settings">
+                  <h3 class="section-name">Public Settings</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -137,6 +147,44 @@ to your front and side controllers for easier setup. Have a look at <code><a hre
                   <div>
                     <code>
                     <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/frontOverlayColor" class="dashAnchor"></a>
+                    <a class="token" href="#/">frontOverlayColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Used to set the color of the overlay that hides the front view on reveal.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/frontOverlayAlpha" class="dashAnchor"></a>
+                    <a class="token" href="#/">frontOverlayAlpha</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Used to set the alpha level of the overlay that hides the front view on reveal.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
                     <a name="//apple_ref/swift/Property/revealOnSwipe" class="dashAnchor"></a>
                     <a class="token" href="#/">revealOnSwipe</a>
                     </code>
@@ -170,6 +218,17 @@ to your front and side controllers for easier setup. Have a look at <code><a hre
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Internal%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Internal Properties" class="dashAnchor"></a>
+                <a href="#/Internal%20Properties">
+                  <h3 class="section-name">Internal Properties</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -287,6 +346,17 @@ to your front and side controllers for easier setup. Have a look at <code><a hre
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialisers"></a>
+                <a name="//apple_ref/swift/Section/Initialisers" class="dashAnchor"></a>
+                <a href="#/Initialisers">
+                  <h3 class="section-name">Initialisers</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -485,6 +555,74 @@ to your front and side controllers for easier setup. Have a look at <code><a hre
     <p>Calling this multiple times, will remove old controller and set the newly passed one.</p>
 
 </div>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Front%20Overlay%20Controller"></a>
+                <a name="//apple_ref/swift/Section/Front Overlay Controller" class="dashAnchor"></a>
+                <a href="#/Front%20Overlay%20Controller">
+                  <h3 class="section-name">Front Overlay Controller</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/overlayView" class="dashAnchor"></a>
+                    <a class="token" href="#/">overlayView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reference to the top overlay view. Available only after frontContainer is initialised.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/prepareOverlayViewFor(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">prepareOverlayViewFor(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Puts overlay view on top of the passed view. Used for <code><a href="../Classes/SideRevealViewController.html#/frontContainer">frontContainer</a></code>.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/overlayTapped()" class="dashAnchor"></a>
+                    <a class="token" href="#/">overlayTapped()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Action that gets triggered when overlay view is tapped.</p>
 
                       </div>
                     </section>

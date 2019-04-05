@@ -8,6 +8,14 @@
 
 import UIKit
 
+// MARK: - Tags
+
+extension Int {
+    
+    /// Tag used in `SideRevealViewController` for searching for the `frontContainer`s overlay view.
+    static fileprivate let overlayTag = 13432
+}
+
 // MARK: - Shared Instance
 
 extension SideRevealViewController {
@@ -39,6 +47,10 @@ extension SideRevealViewController {
 /// to your front and side controllers for easier setup. Have a look at `SideRevealSegue` and `FrontRevealSegue`. for more info.
 public final class SideRevealViewController: UIViewController {
     
+    
+    
+    // MARK: Public Settings
+    
     /// Property that controls how much the front(main) view controller is moved to the side on reveal.
     ///
     /// On this property depends how wide your container for side controller's view will be.
@@ -50,10 +62,21 @@ public final class SideRevealViewController: UIViewController {
     /// Property that controls the bounciness of the reveal action.
     @IBInspectable public var revealDamping: CGFloat = 0.8
     
+    /// Used to set the color of the overlay that hides the front view on reveal.
+    @IBInspectable public var frontOverlayColor: UIColor = .clear { didSet { overlayView?.backgroundColor = frontOverlayColor }}
+    
+    /// Used to set the alpha level of the overlay that hides the front view on reveal.
+    @IBInspectable public var frontOverlayAlpha: CGFloat = 0.7 { didSet { overlayView?.alpha = frontOverlayAlpha }}
+    
     @IBInspectable public var revealOnSwipe = true
     
     /// Set here object who wants to get notified when reveal state is changing.
     public weak var delegate: SideRevealViewControllerDelegate?
+    
+    
+    
+    
+    // MARK: Internal Properties
     
     /// Property that holds reference to the side controller.
     private var sideController: UIViewController?
@@ -84,6 +107,11 @@ public final class SideRevealViewController: UIViewController {
         performSegue(withIdentifier: FrontRevealSegue.identifier, sender: nil)
         performSegue(withIdentifier: SideRevealSegue.identifier, sender: nil)
     }
+    
+    
+    
+    
+    // MARK: Initialisers
     
     @available(*, unavailable)
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -161,6 +189,7 @@ extension SideRevealViewController {
         view.addConstraints([top, center, bottom, width])
         _frontContainer = frontContainer
         frontContainerCenterXConstraint = center
+        prepareOverlayViewFor(frontContainer)
         return frontContainer
     }
     
@@ -175,6 +204,43 @@ extension SideRevealViewController {
         frontController?.removeFromParent()
         frontContainer.subviews.forEach { $0.removeFromSuperview() }
         embed(viewController, in: frontContainer)
+    }
+}
+
+// MARK: - Front Overlay Controller
+
+extension SideRevealViewController {
+    
+    /// Reference to the top overlay view. Available only after frontContainer is initialised.
+    private var overlayView: UIView? { return view.viewWithTag(.overlayTag) }
+    
+    /// Puts overlay view on top of the passed view. Used for `frontContainer`.
+    ///
+    /// - Parameter frontView: pass here the view you want overlay put on top.
+    private func prepareOverlayViewFor(_ frontView: UIView) {
+        
+        let overlay = UIView(frame: .zero)
+        view.addSubview(overlay)
+        view.bringSubviewToFront(overlay)
+        overlay.translatesAutoresizingMaskIntoConstraints = false
+        overlay.tag = .overlayTag
+        overlay.backgroundColor = frontOverlayColor
+        overlay.isUserInteractionEnabled = isRevealed
+        overlay.alpha = 0
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(overlayTapped))
+        overlay.addGestureRecognizer(tapRecognizer)
+        
+        let top = NSLayoutConstraint(item: frontView, attribute: .top, relatedBy: .equal, toItem: overlay, attribute: .top, multiplier: 1, constant: 0)
+        let center = NSLayoutConstraint(item: frontView, attribute: .centerX, relatedBy: .equal, toItem: overlay, attribute: .centerX, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: frontView, attribute: .width, relatedBy: .equal, toItem: overlay, attribute: .width, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: frontView, attribute: .bottom, relatedBy: .equal, toItem: overlay, attribute: .bottom, multiplier: 1, constant: 0)
+        view.addConstraints([top, center, bottom, width])
+    }
+    
+    /// Action that gets triggered when overlay view is tapped.
+    @objc private func overlayTapped() {
+        revealSide(false, animated: true)
     }
 }
 
@@ -213,6 +279,8 @@ extension SideRevealViewController {
     ///   - reveal: if true, side controller is revealed.
     private func revealSide(_ reveal: Bool) {
         frontContainerCenterXConstraint?.constant = reveal ? revealWidth : 0
+        overlayView?.isUserInteractionEnabled = isRevealed
+        overlayView?.alpha = reveal ? frontOverlayAlpha : 0
         view.layoutIfNeeded()
     }
 }
