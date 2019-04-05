@@ -50,6 +50,10 @@ public final class SideRevealViewController: UIViewController {
     /// Property that controls the bounciness of the reveal action.
     @IBInspectable public var revealDamping: CGFloat = 0.8
     
+    @IBInspectable public var revealOnSwipe = true
+    
+    /// Set here object who wants to get notified when reveal state is changing.
+    public weak var delegate: SideRevealViewControllerDelegate?
     
     /// Property that holds reference to the side controller.
     private var sideController: UIViewController?
@@ -192,6 +196,7 @@ extension SideRevealViewController {
     ///   - reveal: if true, side controller is revealed.
     ///   - animated: if true, the reveal action is animated, no animation otherwise.
     public func revealSide(_ reveal: Bool, animated: Bool) {
+        delegate?.sideRevealViewController?(self, willReveal: reveal, animated: animated)
         if animated {
             let animator = UIViewPropertyAnimator(duration: revealDuration, dampingRatio: revealDamping) { [weak self] in
                 self?.revealSide(reveal)

@@ -36,6 +36,7 @@
 		03948D0A22575D4800BB5D8D /* UIViewController+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */; };
 		03948D0B22575D4800BB5D8D /* SideRevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0822575D4800BB5D8D /* SideRevealViewController.swift */; };
 		03948D0D22575D9F00BB5D8D /* SideRevealKit+Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0C22575D9F00BB5D8D /* SideRevealKit+Segues.swift */; };
+		03948D412257913700BB5D8D /* SideRevealViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D402257913700BB5D8D /* SideRevealViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Embed.swift"; sourceTree = "<group>"; };
 		03948D0822575D4800BB5D8D /* SideRevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideRevealViewController.swift; sourceTree = "<group>"; };
 		03948D0C22575D9F00BB5D8D /* SideRevealKit+Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SideRevealKit+Segues.swift"; sourceTree = "<group>"; };
+		03948D402257913700BB5D8D /* SideRevealViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideRevealViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				03948CE022575BBC00BB5D8D /* SideRevealKit.h */,
 				03948D0822575D4800BB5D8D /* SideRevealViewController.swift */,
+				03948D402257913700BB5D8D /* SideRevealViewControllerDelegate.swift */,
 				03948D0C22575D9F00BB5D8D /* SideRevealKit+Segues.swift */,
 				03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */,
 				03948CE122575BBC00BB5D8D /* Info.plist */,
@@ -215,6 +218,7 @@
 				03948D0A22575D4800BB5D8D /* UIViewController+Embed.swift in Sources */,
 				03948D0B22575D4800BB5D8D /* SideRevealViewController.swift in Sources */,
 				03948D0D22575D9F00BB5D8D /* SideRevealKit+Segues.swift in Sources */,
+				03948D412257913700BB5D8D /* SideRevealViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

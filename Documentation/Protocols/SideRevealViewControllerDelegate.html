@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>FrontRevealSegue Class Reference</title>
+    <title>SideRevealViewControllerDelegate Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/FrontRevealSegue" class="dashAnchor"></a>
-    <a title="FrontRevealSegue Class Reference"></a>
+    <a name="//apple_ref/swift/Protocol/SideRevealViewControllerDelegate" class="dashAnchor"></a>
+    <a title="SideRevealViewControllerDelegate Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (0% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        FrontRevealSegue Class Reference
+        SideRevealViewControllerDelegate Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -62,12 +62,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>FrontRevealSegue</h1>
-            <p>Relationship Segue, used to set the front(main) view controller of <code><a href="../Classes/SideRevealViewController.html">SideRevealViewController</a></code>.</p>
+            <h1>SideRevealViewControllerDelegate</h1>
+            <p>Set of all callbacks for reveal state switching of <code><a href="../Classes/SideRevealViewController.html">SideRevealViewController</a></code>.</p>
 
-<p>set this in storyboard&rsquo;s segue identier field</p>
-<pre class="highlight swift"><code><span class="s">"SideRevealKit-Front"</span>
-</code></pre>
+<p>If you want to receive those, set yourself as delegate of the <code><a href="../Classes/SideRevealViewController.html">SideRevealViewController</a></code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -77,8 +75,8 @@
                   <div>
                     <code>
                     <a name="/"></a>
-                    <a name="//apple_ref/swift/Variable/identifier" class="dashAnchor"></a>
-                    <a class="token" href="#/">identifier</a>
+                    <a name="//apple_ref/swift/Method/sideRevealViewController(_:willReveal:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">sideRevealViewController(_:willReveal:animated:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -86,31 +84,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The identifier that has to be set to this segue,
-if you want to use it from storyboards</p>
+                        <p>Called when <code><a href="../Classes/SideRevealViewController.html">SideRevealViewController</a></code> is about to switch its state.</p>
 
-<p>set this in storyboard&rsquo;s segue identier field</p>
-<pre class="highlight swift"><code><span class="s">"SideRevealKit-Front"</span>
-</code></pre>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/"></a>
-                    <a name="//apple_ref/swift/Method/perform()" class="dashAnchor"></a>
-                    <a class="token" href="#/">perform()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
                       </div>
                     </section>
                   </div>
