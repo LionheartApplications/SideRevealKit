@@ -22,7 +22,7 @@
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="frontOverlayColor">
-                            <color key="value" red="0.26522367294520549" green="0.154296875" blue="0.44485766267123289" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>

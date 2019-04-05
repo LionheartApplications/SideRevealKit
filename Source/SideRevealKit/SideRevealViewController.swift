@@ -68,7 +68,12 @@ public final class SideRevealViewController: UIViewController {
     /// Used to set the alpha level of the overlay that hides the front view on reveal.
     @IBInspectable public var frontOverlayAlpha: CGFloat = 0.7 { didSet { overlayView?.alpha = frontOverlayAlpha }}
     
+    /// This enables/disables the swipe to reveal gesture.
     @IBInspectable public var revealOnSwipe = true
+    
+    /// This defines the width of the stripe from which you can initiate the swipe to reveal gesture
+    /// as a percentage of the view controller's `view.bounds.width`.
+    @IBInspectable public var revealSwipeStartZone: CGFloat = 0.075
     
     /// Set here object who wants to get notified when reveal state is changing.
     public weak var delegate: SideRevealViewControllerDelegate?
@@ -95,6 +100,8 @@ public final class SideRevealViewController: UIViewController {
     /// It gets initialised on the first invocation of `frontContainer` computed variable.
     private var _frontContainer: UIView?
     
+    /// Holds info whether we are in the middle of swipe to reveal gesture.
+    private var revealSwipeHasStarted = false
     
     /// `NSLayoutConstraint` used for the animation of the reveal action.
     private var frontContainerCenterXConstraint: NSLayoutConstraint?
@@ -282,5 +289,45 @@ extension SideRevealViewController {
         overlayView?.isUserInteractionEnabled = isRevealed
         overlayView?.alpha = reveal ? frontOverlayAlpha : 0
         view.layoutIfNeeded()
+    }
+}
+
+// MARK: - Swipe To Reveal
+
+extension SideRevealViewController {
+    
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        guard revealOnSwipe else { return }
+        guard let touchX = touches.first?.location(in: view).x else { return }
+        guard !isRevealed else { return }
+        guard touchX < view.bounds.width * revealSwipeStartZone || revealSwipeHasStarted else { return }
+        revealSwipeHasStarted = true
+        
+        guard touchX >= view.bounds.width * revealSwipeStartZone else { revealSide(false, animated: true); return }
+        guard touchX < revealWidth else { revealSwipeHasStarted = false; revealSide(true, animated: true); return }
+        
+        let animator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 0.4) { [weak self] in
+            self?.frontContainerCenterXConstraint?.constant = touchX
+        }
+        animator.startAnimation()
+    }
+    
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        guard revealOnSwipe else { return }
+        guard revealSwipeHasStarted else  { return }
+        revealSwipeHasStarted = false
+        guard let touchX = touches.first?.location(in: view).x else { return }
+        revealSide(touchX > revealWidth / 2, animated: true)
+    }
+    
+    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        guard revealOnSwipe else { return }
+        guard revealSwipeHasStarted else  { return }
+        revealSwipeHasStarted = false
+        guard let touchX = touches.first?.location(in: view).x else { return }
+        revealSide(touchX > revealWidth / 2, animated: true)
     }
 }

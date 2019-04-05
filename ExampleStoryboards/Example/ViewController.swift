@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        SideRevealViewController.shared?.frontContainer.layer.shadowOpacity = 1
     }
 
     @IBAction private func bookmarksButtonTapped(_ sender: UIBarButtonItem) {
