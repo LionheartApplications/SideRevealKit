@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		03948CE222575BBC00BB5D8D /* SideRevealKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 03948CE022575BBC00BB5D8D /* SideRevealKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03948D0A22575D4800BB5D8D /* UIViewController+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */; };
+		03948D0B22575D4800BB5D8D /* SideRevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0822575D4800BB5D8D /* SideRevealViewController.swift */; };
+		03948D0D22575D9F00BB5D8D /* SideRevealKit+Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0C22575D9F00BB5D8D /* SideRevealKit+Segues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		03948CDD22575BBC00BB5D8D /* SideRevealKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SideRevealKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03948CE022575BBC00BB5D8D /* SideRevealKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideRevealKit.h; sourceTree = "<group>"; };
 		03948CE122575BBC00BB5D8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Embed.swift"; sourceTree = "<group>"; };
+		03948D0822575D4800BB5D8D /* SideRevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideRevealViewController.swift; sourceTree = "<group>"; };
+		03948D0C22575D9F00BB5D8D /* SideRevealKit+Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SideRevealKit+Segues.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,9 @@
 			isa = PBXGroup;
 			children = (
 				03948CE022575BBC00BB5D8D /* SideRevealKit.h */,
+				03948D0822575D4800BB5D8D /* SideRevealViewController.swift */,
+				03948D0C22575D9F00BB5D8D /* SideRevealKit+Segues.swift */,
+				03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */,
 				03948CE122575BBC00BB5D8D /* Info.plist */,
 			);
 			path = SideRevealKit;
@@ -95,6 +104,7 @@
 				TargetAttributes = {
 					03948CDC22575BBC00BB5D8D = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -130,6 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03948D0A22575D4800BB5D8D /* UIViewController+Embed.swift in Sources */,
+				03948D0B22575D4800BB5D8D /* SideRevealViewController.swift in Sources */,
+				03948D0D22575D9F00BB5D8D /* SideRevealKit+Segues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +274,7 @@
 		03948CE622575BBC00BB5D8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -277,6 +291,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.stoyanstoyanov.SideRevealKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +300,7 @@
 		03948CE722575BBC00BB5D8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
