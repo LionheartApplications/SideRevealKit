@@ -6,6 +6,31 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		03948D3622578B6E00BB5D8D /* Generate Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 03948D3722578B6F00BB5D8D /* Build configuration list for PBXAggregateTarget "Generate Documentation" */;
+			buildPhases = (
+				03948D3A22578B7B00BB5D8D /* Documentation Generation */,
+			);
+			dependencies = (
+			);
+			name = "Generate Documentation";
+			productName = "Generate Documentation";
+		};
+		03948D3B22578C2400BB5D8D /* Open Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 03948D3C22578C2400BB5D8D /* Build configuration list for PBXAggregateTarget "Open Documentation" */;
+			buildPhases = (
+				03948D3F22578C2800BB5D8D /* Open Documentation */,
+			);
+			dependencies = (
+			);
+			name = "Open Documentation";
+			productName = "Open Documentation";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		03948CE222575BBC00BB5D8D /* SideRevealKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 03948CE022575BBC00BB5D8D /* SideRevealKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03948D0A22575D4800BB5D8D /* UIViewController+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */; };
@@ -106,6 +131,12 @@
 						CreatedOnToolsVersion = 10.2;
 						LastSwiftMigration = 1020;
 					};
+					03948D3622578B6E00BB5D8D = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					03948D3B22578C2400BB5D8D = {
+						CreatedOnToolsVersion = 10.2;
+					};
 				};
 			};
 			buildConfigurationList = 03948CD722575BBC00BB5D8D /* Build configuration list for PBXProject "SideRevealKit" */;
@@ -121,6 +152,8 @@
 			projectRoot = "";
 			targets = (
 				03948CDC22575BBC00BB5D8D /* SideRevealKit */,
+				03948D3622578B6E00BB5D8D /* Generate Documentation */,
+				03948D3B22578C2400BB5D8D /* Open Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -134,6 +167,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03948D3A22578B7B00BB5D8D /* Documentation Generation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Documentation Generation";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n# pass as first argument the folder name in which you want your documentation to be placed.    \n# pass as second argument the visibility level you want to be seen. (private | internal | public | open)\n# pass as third argument where is your README file in your repo from the locality of the directory that holds this project file.\nsh ../Scripts/JazzyDocsGen.sh ../Documentation private ../README.md\n";
+		};
+		03948D3F22578C2800BB5D8D /* Open Documentation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Open Documentation";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Will fail if no docs are generated.\nopen ../Documentation/index.html\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		03948CD922575BBC00BB5D8D /* Sources */ = {
@@ -322,6 +394,42 @@
 			};
 			name = Release;
 		};
+		03948D3822578B6F00BB5D8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PPF77J63K7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		03948D3922578B6F00BB5D8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PPF77J63K7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		03948D3D22578C2400BB5D8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PPF77J63K7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		03948D3E22578C2400BB5D8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PPF77J63K7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -339,6 +447,24 @@
 			buildConfigurations = (
 				03948CE622575BBC00BB5D8D /* Debug */,
 				03948CE722575BBC00BB5D8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03948D3722578B6F00BB5D8D /* Build configuration list for PBXAggregateTarget "Generate Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03948D3822578B6F00BB5D8D /* Debug */,
+				03948D3922578B6F00BB5D8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03948D3C22578C2400BB5D8D /* Build configuration list for PBXAggregateTarget "Open Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03948D3D22578C2400BB5D8D /* Debug */,
+				03948D3E22578C2400BB5D8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

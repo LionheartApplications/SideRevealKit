@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SideRevealViewController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/SideRevealViewController" class="dashAnchor"></a>
+    <a title="SideRevealViewController Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (0% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SideRevealViewController Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/FrontRevealSegue.html">FrontRevealSegue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideRevealSegue.html">SideRevealSegue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideRevealViewController.html">SideRevealViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SideRevealViewController</h1>
+            <p><code>UIViewController</code> that is handling the reveal of view controller behind another one.</p>
+
+<p>That is the main class in <code>SideRevealKit</code>. You can use it from storyboards or from code.</p>
+
+<p>If you are using it from storyboards, you should set &lsquo;Relationship Segue&rsquo;s
+to your front and side controllers for easier setup. Have a look at <code><a href="../Classes/SideRevealSegue.html">SideRevealSegue</a></code> and <code><a href="../Classes/FrontRevealSegue.html">FrontRevealSegue</a></code>. for more info.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/revealWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/">revealWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property that controls how much the front(main) view controller is moved to the side on reveal.</p>
+
+<p>On this property depends how wide your container for side controller&rsquo;s view will be.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/revealDuration" class="dashAnchor"></a>
+                    <a class="token" href="#/">revealDuration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property that controls how much time is needed for the front(main) view controller to move fully in order to reveal the side view controller.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/revealDamping" class="dashAnchor"></a>
+                    <a class="token" href="#/">revealDamping</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property that controls the bounciness of the reveal action.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/sideController" class="dashAnchor"></a>
+                    <a class="token" href="#/">sideController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property that holds reference to the side controller.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/_sideContainer" class="dashAnchor"></a>
+                    <a class="token" href="#/">_sideContainer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property that holds reference to the side controller&rsquo;s view container.</p>
+
+<p>It gets initialised on the first invocation of <code><a href="../Classes/SideRevealViewController.html#/sideContainer">sideContainer</a></code> computed variable.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/frontController" class="dashAnchor"></a>
+                    <a class="token" href="#/">frontController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property that holds reference to the front controller.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/_frontContainer" class="dashAnchor"></a>
+                    <a class="token" href="#/">_frontContainer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property that holds reference to the front controller&rsquo;s view container.</p>
+
+<p>It gets initialised on the first invocation of <code><a href="../Classes/SideRevealViewController.html#/frontContainer">frontContainer</a></code> computed variable.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/frontContainerCenterXConstraint" class="dashAnchor"></a>
+                    <a class="token" href="#/">frontContainerCenterXConstraint</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>NSLayoutConstraint</code> used for the animation of the reveal action.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/">viewDidLoad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">init(coder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Shared%20Instance"></a>
+                <a name="//apple_ref/swift/Section/Shared Instance" class="dashAnchor"></a>
+                <a href="#/Shared%20Instance">
+                  <h3 class="section-name">Shared Instance</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>SideRevealViewController</code> shared instance for the app.</p>
+
+<p>You can only have one instance of</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Variable/_shared" class="dashAnchor"></a>
+                    <a class="token" href="#/">_shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal memory location storing the <code>SideRevealViewController</code> for this app.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Side%20View%20Controller"></a>
+                <a name="//apple_ref/swift/Section/Side View Controller" class="dashAnchor"></a>
+                <a href="#/Side%20View%20Controller">
+                  <h3 class="section-name">Side View Controller</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/sideContainer" class="dashAnchor"></a>
+                    <a class="token" href="#/">sideContainer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>UIView</code> in which the side controller&rsquo;s view gets presented as a child.</p>
+
+<p>Use this view to tweak the appearance of the side view controller (think shadows, corner radiuses, <code>CGAffineTransform</code>-ations)</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/loadSideFrom(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">loadSideFrom(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to load the side view controller, that will get revealed on reveal action.</p>
+
+<p>You don&rsquo;t need to call this if you are using the storyboard segues <code><a href="../Classes/SideRevealSegue.html">SideRevealSegue</a></code> and <code><a href="../Classes/FrontRevealSegue.html">FrontRevealSegue</a></code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Calling this multiple times, will remove old controller and set the newly passed one.</p>
+
+</div>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Front%20View%20Controller"></a>
+                <a name="//apple_ref/swift/Section/Front View Controller" class="dashAnchor"></a>
+                <a href="#/Front%20View%20Controller">
+                  <h3 class="section-name">Front View Controller</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/frontContainer" class="dashAnchor"></a>
+                    <a class="token" href="#/">frontContainer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>UIView</code> in which the front(main) controller&rsquo;s view gets presented as a child.</p>
+
+<p>Use this view to tweak the appearance of the front(main) view controller (think shadows, corner radiuses, <code>CGAffineTransform</code>-ations)</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/loadFrontFrom(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">loadFrontFrom(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to load the front(main) view controller, that will get revealed on reveal action.</p>
+
+<p>You don&rsquo;t need to call this if you are using the storyboard segues <code><a href="../Classes/SideRevealSegue.html">SideRevealSegue</a></code> and <code><a href="../Classes/FrontRevealSegue.html">FrontRevealSegue</a></code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Calling this multiple times, will remove old controller and set the newly passed one.</p>
+
+</div>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Reveal%20Side%20Menu"></a>
+                <a name="//apple_ref/swift/Section/Reveal Side Menu" class="dashAnchor"></a>
+                <a href="#/Reveal%20Side%20Menu">
+                  <h3 class="section-name">Reveal Side Menu</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/isRevealed" class="dashAnchor"></a>
+                    <a class="token" href="#/">isRevealed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gives info whether the <code>SideRevealViewController</code> is currently in &lsquo;revealed&rsquo; state.</p>
+
+<p>When the controller is in &lsquo;revealed&rsquo; state, the side controller is visible.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/toggleReveal()" class="dashAnchor"></a>
+                    <a class="token" href="#/">toggleReveal()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Switches the current instance between &lsquo;reveal&rsquo; and &lsquo;normal&rsquo; state.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/revealSide(_:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">revealSide(_:animated:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to reveal or hide the side view controller.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/revealSide(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">revealSide(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Method used internally to reveal or hide the side view controller.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-04-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
