@@ -2,7 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Example/Example.xcodeproj">
+      location = "group:ExampleCode/ExampleCode.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ExampleStoryboards/ExampleStoryboards.xcodeproj">
    </FileRef>
    <FileRef
       location = "container:Source/SideRevealKit.xcodeproj">
