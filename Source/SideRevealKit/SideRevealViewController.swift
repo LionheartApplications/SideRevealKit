@@ -23,7 +23,7 @@ extension SideRevealViewController {
     /// `SideRevealViewController` shared instance for the app.
     ///
     /// You can only have one instance of
-    public static var shared: SideRevealViewController? {
+    public static var shared: SideRevealViewController {
         if let _shared = _shared { return _shared }
         return SideRevealViewController()
     }

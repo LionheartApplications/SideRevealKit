@@ -19,15 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window?.rootViewController = SideRevealViewController.shared
-        SideRevealViewController.shared?.loadSideFrom(UITableViewController())
-        let front = UIViewController()
-        front.view.backgroundColor = .green
-        SideRevealViewController.shared?.loadFrontFrom(front)
+        SideRevealViewController.shared.loadSideFrom(UITableViewController())
+        SideRevealViewController.shared.loadFrontFrom(UIViewController())
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            SideRevealViewController.shared?.toggleReveal()
+            SideRevealViewController.shared.toggleReveal()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                SideRevealViewController.shared?.toggleReveal()
+                SideRevealViewController.shared.toggleReveal()
             }
         }
 
