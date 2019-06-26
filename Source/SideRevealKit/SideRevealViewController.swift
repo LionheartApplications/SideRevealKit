@@ -78,22 +78,20 @@ public final class SideRevealViewController: UIViewController {
     /// Set here object who wants to get notified when reveal state is changing.
     public weak var delegate: SideRevealViewControllerDelegate?
     
+    /// Property that holds reference to the side controller.
+    public var sideController: UIViewController?
+    
+    /// Property that holds reference to the front controller.
+    public var frontController: UIViewController?
     
     
     
     // MARK: Internal Properties
     
-    /// Property that holds reference to the side controller.
-    private var sideController: UIViewController?
-    
     /// Property that holds reference to the side controller's view container.
     ///
     /// It gets initialised on the first invocation of `sideContainer` computed variable.
     private var _sideContainer: UIView?
-    
-    
-    /// Property that holds reference to the front controller.
-    private var frontController: UIViewController?
     
     /// Property that holds reference to the front controller's view container.
     ///

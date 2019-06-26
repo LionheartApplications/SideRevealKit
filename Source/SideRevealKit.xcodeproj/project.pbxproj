@@ -32,6 +32,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0359B7A122C3BC4300E00856 /* TouchContentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0359B7A022C3BC4300E00856 /* TouchContentScrollView.swift */; };
 		03948CE222575BBC00BB5D8D /* SideRevealKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 03948CE022575BBC00BB5D8D /* SideRevealKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03948D0A22575D4800BB5D8D /* UIViewController+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */; };
 		03948D0B22575D4800BB5D8D /* SideRevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03948D0822575D4800BB5D8D /* SideRevealViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0359B7A022C3BC4300E00856 /* TouchContentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchContentScrollView.swift; sourceTree = "<group>"; };
 		03948CDD22575BBC00BB5D8D /* SideRevealKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SideRevealKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03948CE022575BBC00BB5D8D /* SideRevealKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideRevealKit.h; sourceTree = "<group>"; };
 		03948CE122575BBC00BB5D8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				03948D402257913700BB5D8D /* SideRevealViewControllerDelegate.swift */,
 				03948D0C22575D9F00BB5D8D /* SideRevealKit+Segues.swift */,
 				03948D0722575D4800BB5D8D /* UIViewController+Embed.swift */,
+				0359B7A022C3BC4300E00856 /* TouchContentScrollView.swift */,
 				03948CE122575BBC00BB5D8D /* Info.plist */,
 			);
 			path = SideRevealKit;
@@ -217,6 +220,7 @@
 			files = (
 				03948D0A22575D4800BB5D8D /* UIViewController+Embed.swift in Sources */,
 				03948D0B22575D4800BB5D8D /* SideRevealViewController.swift in Sources */,
+				0359B7A122C3BC4300E00856 /* TouchContentScrollView.swift in Sources */,
 				03948D0D22575D9F00BB5D8D /* SideRevealKit+Segues.swift in Sources */,
 				03948D412257913700BB5D8D /* SideRevealViewControllerDelegate.swift in Sources */,
 			);
