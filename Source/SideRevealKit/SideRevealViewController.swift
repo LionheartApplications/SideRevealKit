@@ -63,7 +63,7 @@ public final class SideRevealViewController: UIViewController {
     @IBInspectable public var revealDamping: CGFloat = 0.8
     
     /// Used to set the color of the overlay that hides the front view on reveal.
-    @IBInspectable public var frontOverlayColor: UIColor = .clear { didSet { overlayView?.backgroundColor = frontOverlayColor }}
+    @IBInspectable public var frontOverlayColor: UIColor = .clear { didSet { DispatchQueue.main.async { [weak self] in self?.overlayView?.backgroundColor = self?.frontOverlayColor }}}
     
     /// Used to set the alpha level of the overlay that hides the front view on reveal.
     @IBInspectable public var frontOverlayAlpha: CGFloat = 0.7 { didSet { overlayView?.alpha = frontOverlayAlpha }}
