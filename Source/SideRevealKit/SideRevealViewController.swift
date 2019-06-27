@@ -71,10 +71,6 @@ public final class SideRevealViewController: UIViewController {
     /// This enables/disables the swipe to reveal gesture.
     @IBInspectable public var revealOnSwipe = true
     
-    /// This defines the width of the stripe from which you can initiate the swipe to reveal gesture
-    /// as a percentage of the view controller's `view.bounds.width`.
-    @IBInspectable public var revealSwipeStartZone: CGFloat = 0.075
-    
     /// Set here object who wants to get notified when reveal state is changing.
     public weak var delegate: SideRevealViewControllerDelegate?
     
@@ -98,11 +94,10 @@ public final class SideRevealViewController: UIViewController {
     /// It gets initialised on the first invocation of `frontContainer` computed variable.
     private var _frontContainer: UIView?
     
-    /// Holds info whether we are in the middle of swipe to reveal gesture.
-    private var revealSwipeHasStarted = false
-    
-    /// `NSLayoutConstraint` used for the animation of the reveal action.
-    private var frontContainerCenterXConstraint: NSLayoutConstraint?
+    /// Property that holds reference to the front controller's scroll view, that has the front container in its content.
+    ///
+    /// It gets initialised on the first invocation of `frontContainer` computed variable.
+    private var _scrollView: TouchContentScrollView?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -144,6 +139,7 @@ extension SideRevealViewController {
     public var sideContainer: UIView {
         guard _sideContainer == nil else { return _sideContainer! }
         loadViewIfNeeded()
+        view.layoutIfNeeded()
         let menuContainer = UIView()
         menuContainer.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(menuContainer)
@@ -152,8 +148,8 @@ extension SideRevealViewController {
         let top = NSLayoutConstraint(item: menuContainer, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
         let left = NSLayoutConstraint(item: menuContainer, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
         let bottom = NSLayoutConstraint(item: menuContainer, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint(item: menuContainer, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: revealWidth)
-        view.addConstraints([top, left, bottom, width])
+        let right = NSLayoutConstraint(item: menuContainer, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -(view.bounds.width - revealWidth))
+        view.addConstraints([top, left, bottom, right])
         _sideContainer = menuContainer
         return menuContainer
     }
@@ -182,20 +178,51 @@ extension SideRevealViewController {
     public var frontContainer: UIView {
         guard _frontContainer == nil else { return _frontContainer! }
         loadViewIfNeeded()
+        view.layoutIfNeeded()
+        let scrollView = TouchContentScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        view.bringSubviewToFront(scrollView)
+        scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isScrollEnabled = revealOnSwipe
+        
+        let top = NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        let left = NSLayoutConstraint(item: scrollView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
+        let right = NSLayoutConstraint(item: scrollView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+        view.addConstraints([top, left, bottom, right])
+        
+        
         let frontContainer = UIView()
         frontContainer.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(frontContainer)
-        view.bringSubviewToFront(frontContainer)
+        scrollView.addSubview(frontContainer)
         
-        let top = NSLayoutConstraint(item: frontContainer, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
-        let center = NSLayoutConstraint(item: frontContainer, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+        let innerTop = NSLayoutConstraint(item: frontContainer, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 0)
+        let innerLeft = NSLayoutConstraint(item: frontContainer, attribute: .left, relatedBy: .equal, toItem: scrollView, attribute: .left, multiplier: 1, constant: 0)
+        let innerRight = NSLayoutConstraint(item: frontContainer, attribute: .right, relatedBy: .equal, toItem: scrollView, attribute: .right, multiplier: 1, constant: 0)
+        let innerBottom = NSLayoutConstraint(item: frontContainer, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: frontContainer, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint(item: frontContainer, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-        view.addConstraints([top, center, bottom, width])
+        let height = NSLayoutConstraint(item: frontContainer, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+        scrollView.addConstraints([innerTop, innerLeft, innerRight, innerBottom])
+        view.addConstraints([width, height])
+        scrollView.contentSize = view.bounds.size
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: revealWidth, bottom: 0, right: 0)
+        
         _frontContainer = frontContainer
-        frontContainerCenterXConstraint = center
+        _scrollView = scrollView
         prepareOverlayViewFor(frontContainer)
         return frontContainer
+    }
+    
+    /// Reference to the `TouchContentScrollView` that contains the front container.
+    private var scrollView: TouchContentScrollView {
+        guard _scrollView == nil else { return _scrollView! }
+        
+        // in the front container getter _scrollView MUST be initialised
+        _ = frontContainer
+        return _scrollView!
     }
     
     /// Use this method to load the front(main) view controller, that will get revealed on reveal action.
@@ -230,22 +257,14 @@ extension SideRevealViewController {
         overlay.translatesAutoresizingMaskIntoConstraints = false
         overlay.tag = .overlayTag
         overlay.backgroundColor = frontOverlayColor
-        overlay.isUserInteractionEnabled = isRevealed
+        overlay.isUserInteractionEnabled = false
         overlay.alpha = 0
-        
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(overlayTapped))
-        overlay.addGestureRecognizer(tapRecognizer)
         
         let top = NSLayoutConstraint(item: frontView, attribute: .top, relatedBy: .equal, toItem: overlay, attribute: .top, multiplier: 1, constant: 0)
         let center = NSLayoutConstraint(item: frontView, attribute: .centerX, relatedBy: .equal, toItem: overlay, attribute: .centerX, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: frontView, attribute: .width, relatedBy: .equal, toItem: overlay, attribute: .width, multiplier: 1, constant: 0)
         let bottom = NSLayoutConstraint(item: frontView, attribute: .bottom, relatedBy: .equal, toItem: overlay, attribute: .bottom, multiplier: 1, constant: 0)
         view.addConstraints([top, center, bottom, width])
-    }
-    
-    /// Action that gets triggered when overlay view is tapped.
-    @objc private func overlayTapped() {
-        revealSide(false, animated: true)
     }
 }
 
@@ -256,7 +275,7 @@ extension SideRevealViewController {
     /// Gives info whether the `SideRevealViewController` is currently in 'revealed' state.
     ///
     /// When the controller is in 'revealed' state, the side controller is visible.
-    public var isRevealed: Bool { return frontContainerCenterXConstraint?.constant == revealWidth }
+    public var isRevealed: Bool { return scrollView.contentOffset.x == -revealWidth }
     
     /// Switches the current instance between 'reveal' and 'normal' state.
     @objc public func toggleReveal() { revealSide(!isRevealed, animated: true) }
@@ -271,10 +290,12 @@ extension SideRevealViewController {
         if animated {
             let animator = UIViewPropertyAnimator(duration: revealDuration, dampingRatio: revealDamping) { [weak self] in
                 self?.revealSide(reveal)
+                self?.showOverlay(reveal)
             }
             animator.startAnimation()
         } else {
             revealSide(reveal)
+            showOverlay(reveal, animated: false)
         }
     }
     
@@ -283,49 +304,64 @@ extension SideRevealViewController {
     /// - Parameters:
     ///   - reveal: if true, side controller is revealed.
     private func revealSide(_ reveal: Bool) {
-        frontContainerCenterXConstraint?.constant = reveal ? revealWidth : 0
-        overlayView?.isUserInteractionEnabled = isRevealed
-        overlayView?.alpha = reveal ? frontOverlayAlpha : 0
+        let contentOffset = CGPoint(x: reveal ? -revealWidth : 0, y: scrollView.contentOffset.y)
+        scrollView.setContentOffset(contentOffset, animated: false)
         view.layoutIfNeeded()
+    }
+    
+    /// Method used internally to show or hide the overlay view of the front container.
+    ///
+    /// - Parameters:
+    ///   - reveal: if true, overlay is shown.
+    ///   - animated: if true, the transition is animated, no animation otherwise.
+    private func showOverlay(_ reveal: Bool, animated: Bool = true) {
+        if animated {
+            let animator = UIViewPropertyAnimator(duration: revealDuration, dampingRatio: revealDamping) { [weak self] in
+                self?.showOverlay(reveal)
+            }
+            animator.startAnimation()
+        } else {
+           showOverlay(reveal)
+        }
+    }
+    
+    /// Method used internally to show or hide the overlay view of the front container.
+    ///
+    /// - Parameters:
+    ///   - reveal: if true, overlay is shown.
+    private func showOverlay(_ reveal: Bool) {
+        overlayView?.alpha = reveal ? frontOverlayAlpha : 0
     }
 }
 
 // MARK: - Swipe To Reveal
 
-extension SideRevealViewController {
+extension SideRevealViewController: UIScrollViewDelegate {
     
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-        guard revealOnSwipe else { return }
-        guard let touchX = touches.first?.location(in: view).x else { return }
-        guard !isRevealed else { return }
-        guard touchX < view.bounds.width * revealSwipeStartZone || revealSwipeHasStarted else { return }
-        revealSwipeHasStarted = true
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let targetX = scrollView.contentOffset.x
+        let willBeRevealed = targetX > -(view.bounds.width - revealWidth / 10)
         
-        guard touchX >= view.bounds.width * revealSwipeStartZone else { revealSide(false, animated: true); return }
-        guard touchX < revealWidth else { revealSwipeHasStarted = false; revealSide(true, animated: true); return }
-        
-        let animator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 0.4) { [weak self] in
-            self?.frontContainerCenterXConstraint?.constant = touchX
+        if willBeRevealed {
+            showOverlay(false, animated: true)
         }
-        animator.startAnimation()
     }
     
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        guard revealOnSwipe else { return }
-        guard revealSwipeHasStarted else  { return }
-        revealSwipeHasStarted = false
-        guard let touchX = touches.first?.location(in: view).x else { return }
-        revealSide(touchX > revealWidth / 2, animated: true)
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let targetX = targetContentOffset.pointee.x
+        let willBeRevealed = targetX > -(revealWidth / 2)
+
+        guard targetX > -revealWidth && targetX < 0 else { return }
+        targetContentOffset.pointee.x = willBeRevealed ? 0 : -revealWidth
     }
     
-    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        guard revealOnSwipe else { return }
-        guard revealSwipeHasStarted else  { return }
-        revealSwipeHasStarted = false
-        guard let touchX = touches.first?.location(in: view).x else { return }
-        revealSide(touchX > revealWidth / 2, animated: true)
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        revealSide(scrollView.contentOffset.x < -(revealWidth / 2), animated: true)
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard decelerate == false else { return }
+        revealSide(scrollView.contentOffset.x < -(revealWidth / 2), animated: true)
     }
 }

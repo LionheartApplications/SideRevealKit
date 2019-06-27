@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = SideRevealViewController.shared
         SideRevealViewController.shared.loadSideFrom(UITableViewController())
-        SideRevealViewController.shared.loadFrontFrom(UIViewController())
+        let front = UIViewController()
+        front.view.backgroundColor = .green
+        SideRevealViewController.shared.loadFrontFrom(front)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             SideRevealViewController.shared.toggleReveal()
