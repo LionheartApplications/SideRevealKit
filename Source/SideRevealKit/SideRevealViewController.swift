@@ -69,7 +69,7 @@ public final class SideRevealViewController: UIViewController {
     @IBInspectable public var frontOverlayAlpha: CGFloat = 0.7 { didSet { overlayView?.alpha = frontOverlayAlpha }}
     
     /// This enables/disables the swipe to reveal gesture.
-    @IBInspectable public var revealOnSwipe = true
+    @IBInspectable public var revealOnSwipe = true { didSet { DispatchQueue.main.async { [weak self] in self?.scrollView.isScrollEnabled = self?.revealOnSwipe ?? true }}}
     
     /// Set here object who wants to get notified when reveal state is changing.
     public weak var delegate: SideRevealViewControllerDelegate?
@@ -243,8 +243,8 @@ extension SideRevealViewController {
 
 extension SideRevealViewController {
     
-    /// Reference to the top overlay view. Available only after frontContainer is initialised.
-    private var overlayView: UIView? { return view.viewWithTag(.overlayTag) }
+    /// Reference to the top overlay view in front of the main controller. Available only after frontContainer is initialised.
+    public var overlayView: UIView? { return view.viewWithTag(.overlayTag) }
     
     /// Puts overlay view on top of the passed view. Used for `frontContainer`.
     ///
