@@ -345,6 +345,15 @@ extension SideRevealViewController: UIScrollViewDelegate {
         if willBeRevealed {
             showOverlay(false, animated: true)
         }
+        
+        if scrollView.isDragging {
+            if scrollView.contentOffset.x > -(revealWidth / 2) {
+                scrollView.bounces = false
+            }
+            if scrollView.contentOffset.x < -(revealWidth / 2) {
+                scrollView.bounces = true
+            }
+        }
     }
     
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
