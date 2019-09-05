@@ -165,6 +165,7 @@ extension SideRevealViewController {
         sideController?.removeFromParent()
         sideContainer.subviews.forEach { $0.removeFromSuperview() }
         embed(viewController, in: sideContainer)
+        sideController = viewController
     }
 }
 
@@ -236,6 +237,7 @@ extension SideRevealViewController {
         frontController?.removeFromParent()
         frontContainer.subviews.forEach { $0.removeFromSuperview() }
         embed(viewController, in: frontContainer)
+        frontController = viewController
     }
 }
 
